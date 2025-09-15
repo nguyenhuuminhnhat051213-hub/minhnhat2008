@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng ký môn học</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5); /* nền chuyển màu */
+      margin: 0;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #222;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    form {
+      width: 400px;
+      margin: 0 auto;
+      padding: 25px;
+      background: #fff;             /* khung trắng */
+      border-radius: 10px;          /* bo góc */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* đổ bóng */
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      font-size: 15px;
+      background: #f9f9f9;
+    }
+    .gender {
+      margin-top: 5px;
+    }
+    .gender label {
+      font-weight: normal;
+      margin-right: 15px;
+      color: #444;
+    }
+    input[type="submit"] {
+      margin-top: 18px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;  /* màu xanh lá */
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    input[type="submit"]:hover {
+      background: #45a049;  /* xanh đậm hơn khi rê chuột */
+    }
+  </style>
+</head>
+<body>
+  <h2>Đăng ký môn học</h2>
+  <form>
+    <label for="username">User Name</label>
+    <input type="text" id="username" name="username" value="">
+
+    <label for="password">Mật khẩu</label>
+    <input type="password" id="password" name="password" value="">
+
+    <label for="dob">Ngày sinh</label>
+    <input type="date" id="dob" name="dob" value="">
+
+    <label>Giới tính</label><br>
+    <input type="radio" id="nam" name="gender" value="Nam">
+    <label for="nam">Nam</label><br>
+    <input type="radio" id="nu" name="gender" value="Nữ">
+    <label for="nu">Nữ</label><br><br>
+    
+    <label for="course">Môn học</label>
+    <select id="course" name="course">
+      <option>Tin học căn bản</option>
+      <option>Lập trình website</option>
+      <option>Lập trình hướng đối tượng</option>
+      <option>Cơ sở dữ liệu</option>
+    </select>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
