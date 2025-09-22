@@ -1,0 +1,30 @@
+.box{
+    width: 200px;
+    height: 100px;
+    background: lightcyan;
+    padding: 20px;
+    border: 5px solid yellow;
+    position: relative;
+    top: 20px;
+    left: 10px;
+    background-color: blue;
+    color: #478;
+    box-sizing: border-box;
+}
+.box1tỷ{
+    width: 200px;
+    height: 100px;
+    background: lightcyan;
+    padding: 20px;
+    border: 5px solid yellow;
+    position: relative;
+    top: 30px;
+    left: 100px;
+    background-color: aqua;
+    color:yellow;
+    box-sizing: border-box;
+}
+h2{
+    color: #876;
+    font-size: 40%;
+}

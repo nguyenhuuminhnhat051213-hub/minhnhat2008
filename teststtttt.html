@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ví dụ Position trong CSS</title>
+  <style>
+    .box {
+      width: 150px;
+      height: 100px;
+      background-color: lightblue;
+      border: 2px solid blue;
+      margin: 20px;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    /* position: static (mặc định) */
+    .static {
+      position: static;
+      background-color: lightgray;
+    }
+
+    /* position: relative */
+    .relative {
+      position: relative;
+      top: 20px; /* dịch xuống 20px */
+      left: 30px; /* dịch sang phải 30px */
+      background-color: lightgreen;
+    }
+
+    /* position: absolute */
+    .absolute-container {
+      position: relative; /* để phần tử con absolute căn theo đây */
+      height: 200px;
+      border: 2px dashed gray;
+      margin: 20px;
+    }
+    .absolute {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: lightcoral;
+      width: 120px;
+      height: 80px;
+      border: 2px solid red;
+    }
+
+    /* position: fixed */
+    .fixed {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: orange;
+      width: 120px;
+      height: 80px;
+      border: 2px solid darkorange;
+      color: white;
+      padding: 10px;
+    }
+
+    /* position: sticky */
+    .sticky {
+      position: sticky;
+      top: 0;
+      background-color: lightpink;
+      border: 2px solid deeppink;
+      padding: 10px;
+      font-weight: bold;
+      z-index: 10;
+    }
+
+    /* Để có chỗ cuộn trang cho sticky */
+    .content {
+      height: 1000px;
+      background: linear-gradient(to bottom, white 0%, lightyellow 100%);
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ví dụ Position trong CSS</h2>
+
+  <div class="box static">Position: static (mặc định)</div>
+
+  <div class="box relative">Position: relative (dịch xuống 20px, sang phải 30px)</div>
+
+  <div class="absolute-container">
+    <div class="absolute">Position: absolute (so với phần tử cha)</div>
+  </div>
+
+  <div class="fixed">Position: fixed (đứng yên khi cuộn)</div>
+
+  <div class="sticky">Position: sticky (dính trên đầu khi cuộn)</div>
+
+  <div class="content">
+    Cuộn trang xuống để xem hiệu ứng sticky.
+  </div>
+
+</body>
+</html>
