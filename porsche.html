@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Porsche Minh Nhật — White & Teal</title>
+<style>
+/* ====== Reset & base ====== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+:root{
+  --bg: #ffffff;
+  --card: #f7fbfb;
+  --muted: #6b7780;
+  --text: #042028;
+  --teal: #00b894;
+  --teal-600: #00a97a;
+  --accent-ghost: rgba(0,184,148,0.08);
+  --border: rgba(4,32,40,0.06);
+  --shadow: rgba(4,32,40,0.06);
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter, "Poppins", system-ui, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
+
+/* ====== Header / Nav ====== */
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+  background:linear-gradient(180deg, #ffffff 0%, #fbffff 100%);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:30;
+}
+.brand { display:flex; gap:12px; align-items:center; }
+.brand .logo-box{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;
+  background:linear-gradient(90deg, rgba(0,184,148,0.06), rgba(0,184,148,0.03));
+  border:1px solid var(--border);
+  box-shadow:0 6px 18px rgba(4,32,40,0.03);
+}
+.brand svg{width:36px;height:36px}
+.brand .title { color:var(--teal); font-weight:800; letter-spacing:0.6px; font-size:18px }
+.brand .subtitle{font-size:12px;color:var(--muted)}
+.header .nav {
+  display:flex; gap:8px; align-items:center;
+}
+.nav a {
+  color:var(--teal);
+  text-decoration:none;
+  margin:0 6px;
+  font-weight:600;
+  padding:8px 10px;
+  border-radius:8px;
+  transition:all .18s ease;
+}
+.nav a:hover{ background:var(--accent-ghost); color:var(--teal-600) }
+.icon-cart{
+  position:relative; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  background:transparent;border:none;
+}
+.cart-badge{
+  position:absolute; top:-6px; right:-8px; background:var(--teal); color:#fff;
+  font-size:12px; padding:3px 7px; border-radius:999px; font-weight:700;
+  box-shadow:0 6px 14px rgba(0,169,122,0.12);
+}
+
+/* ====== Hero Banner ====== */
+.hero{
+  position:relative; height:420px; display:flex; align-items:center; justify-content:center;
+  background-image:url("https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=1950&q=80");
+  background-size:cover; background-position:center;
+  overflow:hidden;
+}
+.hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.9));}
+.hero-inner{position:relative; text-align:center; z-index:2; padding:0 20px}
+.hero h1{color:var(--text); font-size:40px; margin-bottom:10px; letter-spacing:0.4px; transform:translateY(8px); opacity:0; animation:fadeUp .7s .1s forwards}
+.hero p{color:var(--muted); opacity:0; max-width:900px; margin:0 auto; animation:fadeUp .7s .25s forwards}
+
+/* animations */
+@keyframes fadeUp { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)} }
+.fade-in { opacity:0; transform:translateY(10px); animation:fadeUp .6s forwards; }
+
+/* ====== Main layout ====== */
+.container{max-width:1200px; margin:28px auto; padding:0 20px}
+.section-title{color:var(--teal); font-size:26px; margin-bottom:18px; display:inline-block}
+
+/* ====== Product grid ====== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:22px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px; overflow:hidden;
+  transition:transform .28s ease, box-shadow .28s ease;
+  box-shadow: 0 6px 18px var(--shadow);
+  opacity:0; transform:translateY(14px); animation:fadeUp .5s forwards;
+}
+.card:hover{transform:translateY(-6px) scale(1.01); box-shadow:0 20px 40px rgba(0,169,122,0.08)}
+.card img{width:100%; height:190px; object-fit:cover; display:block; transition:transform .35s}
+.card:hover img{transform:scale(1.03)}
+.card-body{padding:16px}
+.card h3{color:var(--text); font-size:18px; margin-bottom:8px}
+.card p.desc{color:var(--muted); font-size:13px; margin-bottom:12px}
+.card .price{color:var(--teal); font-weight:700; margin-bottom:12px}
+.row-actions{display:flex; gap:10px; align-items:center}
+.btn{
+  background:var(--teal); color:#00221b; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700;
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+  box-shadow:0 8px 22px rgba(0,169,122,0.06);
+}
+.btn:hover{background:var(--teal-600); transform:translateY(-2px)}
+
+/* ====== Cart area (on page) ====== */
+.cart-wrap{
+  margin-top:36px; background:linear-gradient(180deg, #ffffff, #fbffff);
+  padding:18px; border-radius:12px; border:1px solid var(--border);
+  box-shadow:0 10px 30px rgba(4,32,40,0.03);
+}
+.cart-head{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px}
+.cart-count{color:var(--teal); font-weight:700}
+.table{width:100%; border-collapse:collapse}
+.table th,.table td{padding:12px 8px; border-bottom:1px solid var(--border); vertical-align:middle; text-align:left}
+.table th{color:var(--teal); font-weight:700; font-size:13px}
+.table img{width:110px; border-radius:8px}
+.qty-control{display:flex; align-items:center; gap:8px}
+.qty-control button{background:transparent;color:var(--text);border:1px solid var(--border);padding:6px 8px;border-radius:6px;cursor:pointer}
+.remove{background:#ff6b6b;color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+.remove:hover{background:#e03b3b}
+
+/* totals & form */
+.totals{display:flex;justify-content:flex-end; gap:18px; align-items:center; margin-top:12px; flex-wrap:wrap}
+.total-amount{color:var(--teal); font-weight:800; font-size:20px}
+.order-form{margin-top:18px; padding:16px; border-radius:10px; background:#ffffff; max-width:720px; border:1px solid var(--border)}
+.order-form input, .order-form textarea {
+  width:100%; padding:10px; margin:8px 0; background:transparent; border:1px solid var(--border); color:var(--text); border-radius:8px;
+}
+.order-form button{margin-top:8px}
+
+/* ====== Footer ====== */
+footer{
+  margin-top:48px; padding:22px; background:#f8fdfd; border-top:1px solid var(--border)
+}
+.footer-grid{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;justify-content:space-between;padding:0 20px}
+.brand-small{display:flex; gap:12px; align-items:center}
+.brand-small .title{color:var(--teal);font-weight:700}
+.contact{color:var(--text)}
+.socials{display:flex; gap:10px; align-items:center}
+.socials a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;background:var(--card);text-decoration:none;border:1px solid var(--border)}
+.socials svg{width:18px;height:18px;fill:var(--teal)}
+
+/* toast */
+#toastMsg{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--teal), #00ffcc);color:#00221b;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,184,148,0.12);font-weight:700;opacity:0;transition:opacity .3s}
+
+/* ====== Responsive ====== */
+@media (max-width:900px){
+  .hero{height:300px}.hero h1{font-size:28px}
+  .brand .title{font-size:15px}
+  .table img{width:80px}
+  .order-form{padding:12px}
+}
+@media (max-width:560px){
+  .header{padding:12px}
+  .hero{height:240px}.hero h1{font-size:22px}
+  .brand svg{display:none}
+  .nav a{display:none}
+  .footer-grid{flex-direction:column; align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" role="banner">
+  <div class="brand" aria-label="Porsche Minh Nhật">
+    <div class="logo-box" aria-hidden="true">
+      <!-- simple car icon + text logo -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path fill="#00b894" d="M3 13s1-4 5-4h8s3 0 4 4v3H3v-3z"/>
+        <circle cx="7" cy="17.5" r="1.5" fill="#004d40"/>
+        <circle cx="17" cy="17.5" r="1.5" fill="#004d40"/>
+      </svg>
+      <div>
+        <div class="title">Porsche Minh Nhật</div>
+        <div class="subtitle">Showroom (demo)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#models">Dòng xe</a>
+    <a href="#cart">Giỏ hàng</a>
+    <a href="#contact">Liên hệ</a>
+    <button class="icon-cart" onclick="scrollToCart()" aria-label="Xem giỏ hàng">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="var(--teal)" d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45C8.89 16.37 9 16.68 9 17a2 2 0 1 0 4 0c0-.32.11-.63.27-.84L18 6H6.21l-.94-2z"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" role="region" aria-label="Banner Porsche Minh Nhật">
+  <div class="hero-inner">
+    <h1>Đẳng cấp Porsche — Porsche Minh Nhật</h1>
+    <p>Hiệu suất tuyệt đỉnh, thiết kế vượt thời gian. Chọn ngay chiếc Porsche dành cho bạn.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<main class="container" id="main" role="main">
+  <section id="models" aria-labelledby="models-title">
+    <h2 id="models-title" class="section-title">Dòng xe nổi bật</h2>
+
+    <div class="grid" id="productGrid" aria-live="polite">
+      <!-- JS sẽ render card ở đây -->
+    </div>
+  </section>
+
+  <!-- CART -->
+  <section class="cart-wrap" id="cart" aria-labelledby="cart-title">
+    <div class="cart-head">
+      <h2 id="cart-title" style="color:var(--teal)">Giỏ hàng của bạn</h2>
+      <div class="cart-count" id="cartCount">0 xe</div>
+    </div>
+
+    <div id="cartArea">
+      <!-- JS render giỏ hàng bảng ở đây -->
+    </div>
+
+    <div class="totals" id="cartFooter">
+      <!-- Tổng tiền + nút đặt hàng (render nếu có item) -->
+    </div>
+
+    <div style="margin-top:18px">
+      <div class="order-form" aria-label="Form đặt mua">
+        <h3 style="color:var(--teal)">Thông tin đặt mua</h3>
+        <form id="orderForm">
+          <input type="text" id="custName" placeholder="Họ và tên" required>
+          <input type="tel" id="custPhone" placeholder="Số điện thoại" required>
+          <input type="email" id="custEmail" placeholder="Email" required>
+          <textarea id="custNote" rows="3" placeholder="Ghi chú (ví dụ: màu, cấu hình)..."></textarea>
+          <button class="btn" type="submit">Gửi đơn hàng</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact" aria-labelledby="contact-title">
+  <div class="footer-grid">
+    <div class="brand-small">
+      <div style="width:44px;height:44px;border-radius:8px;background:linear-gradient(90deg, rgba(0,184,148,0.06), rgba(0,184,148,0.03));display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:var(--teal)"><path d="M3 13s1-4 5-4h8s3 0 4 4v3H3v-3z"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>
+      </div>
+      <div>
+        <div class="title">Porsche Minh Nhật</div>
+        <div style="font-size:13px;color:var(--muted)">Chuyên xe Porsche chính hãng (demo)</div>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div style="font-weight:700;color:var(--teal);margin-bottom:8px">Showroom Porsche Minh Nhật</div>
+      <div>Địa chỉ: 222 Lê Lợi, Quận 1, TP. Hồ Chí Minh</div>
+      <div>Điện thoại: <a href="tel:+84365403321" style="color:var(--teal);text-decoration:none">0365 403 321</a></div>
+      <div>Email: <a href="mailto:minhnhattoro@gmail.com" style="color:var(--teal);text-decoration:none">minhnhattoro@gmail.com</a></div>
+    </div>
+
+    <div>
+      <div style="font-weight:700;color:var(--teal);margin-bottom:8px">Kết nối với chúng tôi</div>
+      <div class="socials" aria-label="Mạng xã hội">
+        <a href="#" title="Facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.89h-2.3v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+        </a>
+        <a href="#" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 8.5zM18.4 6.6a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/></svg>
+        </a>
+        <a href="#" title="YouTube" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M19.6 7.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C12 3.6 12 3.6 12 3.6h0s-0 0-4.7.3c-.4 0-1.3 0-2.1 1-.6.7-.8 2.3-.8 2.3S4 9 4 10.8v2.4C4 16 4.4 17 5 17.8c.6.9 1.4.9 1.8 1 1.3.1 5.2.3 5.2.3s0 0 4.7-.3c.4 0 1.3 0 2.1-1 .6-.7.8-2.3.8-2.3S20 15 20 13.2v-2.4c0-1.8-.4-3.6-.4-3.6zM10 14.2V9.8l4.2 2.2L10 14.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:var(--muted);margin-top:14px">© 2025 Porsche Minh Nhật — Demo site</div>
+</footer>
+
+<!-- ====== SCRIPT: products, cart, storage, form ====== -->
+<script>
+/* ---------- Data: use the image links you provided ---------- */
+const PRODUCTS = [
+  { id:1, name:"Porsche 911 Turbo S", desc:"Màu đen bóng — góc chụp phía trước", price:8500000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2025/02/992-2nd-c2-gts-banner.jpg" },
+  { id:2, name:"Porsche Taycan", desc:"Xe điện màu trắng — hiện đại", price:6800000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2023/09/E3-2nd-TOP-GT-model-page-headbanner.jpg" },
+  { id:3, name:"Porsche Cayenne", desc:"SUV màu xám bạc — sang trọng & mạnh mẽ", price:5900000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2023/09/E3-2nd-C-model-page-headbanner.jpg" },
+  { id:4, name:"Porsche 718", desc:"Màu đen — dáng thể thao nhỏ gọn", price:3950000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2013/11/jdp-2016-modelseries-718-boxster-intro-01.jpg" },
+  { id:5, name:"Porsche Macan T", desc:"Màu trắng — SUV nhỏ gọn", price:3570000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2021/11/MA22T3BOX0005_rgb-1.jpg" },
+  { id:6, name:"Porsche Panamera", desc:"Sedan màu đen — hiệu suất & thoải mái", price:6420000000, img:"https://porsche-vietnam.vn/wp-content/uploads/2024/05/PA24P5AOX0001_low-banner.jpg" }
+];
+
+/* ---------- Local storage helpers ---------- */
+const LS_KEY = "porsche_minhnhat_cart_v1";
+function loadCart(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  }catch(e){
+    return [];
+  }
+}
+function saveCart(cart){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
+
+/* ---------- Render products ---------- */
+const grid = document.getElementById("productGrid");
+function formatVND(n){ return n.toLocaleString('vi-VN') + " ₫"; }
+
+function renderProducts(){
+  // slight stagger animation
+  grid.innerHTML = PRODUCTS.map((p, idx)=>`
+    <article class="card" role="article" aria-label="${p.name}" style="animation-delay:${idx*0.06}s">
+      <img loading="lazy" src="${p.img}" alt="${p.name}">
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="price">${formatVND(p.price)}</div>
+        <div class="row-actions">
+          <button class="btn" onclick="addToCart(${p.id})">Mua ngay</button>
+          <button style="background:transparent;color:var(--teal);border:1px solid var(--border);padding:8px;border-radius:8px" onclick="viewDetails(${p.id})">Xem chi tiết</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+renderProducts();
+
+/* ---------- CART logic ---------- */
+let cart = loadCart();
+updateCartUI();
+
+function findProduct(id){ return PRODUCTS.find(p=>p.id===id) }
+
+/* add product (if same id exists -> +1 qty) */
+function addToCart(id){
+  const prod = findProduct(id);
+  if(!prod) return;
+  const existing = cart.find(item=>item.id===id);
+  if(existing) existing.qty++;
+  else cart.push({ id:prod.id, name:prod.name, price:prod.price, img:prod.img, desc:prod.desc, qty:1 });
+  saveCart(cart);
+  updateCartUI();
+  showToast(${prod.name} đã thêm vào giỏ hàng);
+}
+
+/* remove item */
+function removeFromCart(index){
+  cart.splice(index,1);
+  saveCart(cart);
+  updateCartUI();
+}
+
+/* change qty */
+function changeQty(index, delta){
+  const it = cart[index];
+  if(!it) return;
+  it.qty += delta;
+  if(it.qty < 1) it.qty = 1;
+  saveCart(cart);
+  updateCartUI();
+}
+
+/* render cart area */
+function updateCartUI(){
+  const cartArea = document.getElementById("cartArea");
+  const cartCount = document.getElementById("cartCount");
+  const cartFooter = document.getElementById("cartFooter");
+  const cartBadge = document.getElementById("cartBadge");
+
+  const totalItems = cart.reduce((s,i)=>s+i.qty,0);
+  cartCount.textContent = ${totalItems} xe;
+  cartBadge.textContent = totalItems;
+
+  if(cart.length === 0){
+    cartArea.innerHTML = <p style="text-align:center;color:var(--muted)">Giỏ hàng đang trống. Hãy thêm chiếc Porsche bạn thích!</p>;
+    cartFooter.innerHTML = '';
+    return;
+  }
+
+  cartArea.innerHTML = `
+    <div style="overflow:auto">
+      <table class="table" role="table" aria-label="Danh sách giỏ hàng">
+        <thead>
+          <tr><th>Ảnh</th><th>Sản phẩm</th><th>Số lượng</th><th>Giá 1 chiếc</th><th>Thành tiền</th><th>Hành động</th></tr>
+        </thead>
+        <tbody>
+          ${cart.map((it,idx)=>`
+            <tr>
+              <td><img src="${it.img}" alt="${it.name}"></td>
+              <td><strong>${it.name}</strong><div style="color:var(--muted);margin-top:6px;font-size:13px">${it.desc}</div></td>
+              <td>
+                <div class="qty-control" role="group" aria-label="Số lượng">
+                  <button aria-label="Giảm" onclick="changeQty(${idx}, -1)">−</button>
+                  <div style="min-width:28px;text-align:center">${it.qty}</div>
+                  <button aria-label="Tăng" onclick="changeQty(${idx}, 1)">+</button>
+                </div>
+              </td>
+              <td>${formatVND(it.price)}</td>
+              <td>${formatVND(it.price * it.qty)}</td>
+              <td><button class="remove" onclick="removeFromCart(${idx})" aria-label="Xóa">Xóa</button></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  const total = cart.reduce((s,i)=>s + i.price * i.qty, 0);
+  cartFooter.innerHTML = `
+    <div class="total-amount">Tổng: ${formatVND(total)}</div>
+    <div>
+      <button class="btn" onclick="checkout()">Tiến hành đặt mua</button>
+      <button style="background:#f0f4f3;color:var(--text);border:1px solid var(--border);padding:10px 12px;border-radius:8px;margin-left:8px" onclick="clearCart()">Xóa tất cả</button>
+    </div>
+  `;
+}
+
+/* clear cart */
+function clearCart(){
+  if(!confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')) return;
+  cart = []; saveCart(cart); updateCartUI();
+}
+
+/* checkout: scroll to form */
+function checkout(){
+  document.getElementById('custName').focus();
+  window.location.hash = "#cart";
+  showToast('Vui lòng điền thông tin đặt mua ở bên dưới.');
+}
+
+/* order submit */
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(cart.length === 0){ alert('Giỏ hàng trống! Vui lòng chọn xe trước.'); return; }
+  const order = {
+    customer: document.getElementById('custName').value.trim(),
+    phone: document.getElementById('custPhone').value.trim(),
+    email: document.getElementById('custEmail').value.trim(),
+    note: document.getElementById('custNote').value.trim(),
+    items: cart,
+    total: cart.reduce((s,i)=>s+i.price*i.qty,0),
+    createdAt: new Date().toISOString()
+  };
+  // In demo: log to console and clear cart
+  console.log('ORDER (demo):', order);
+  cart = []; saveCart(cart); updateCartUI();
+  alert('Cảm ơn ' + order.customer + '! Đơn hàng của bạn đã được ghi nhận (demo). Chúng tôi sẽ liên hệ sớm.');
+  document.getElementById('orderForm').reset();
+});
+
+/* quick view details (demo) */
+function viewDetails(id){

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Porsche Minh Nhật</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{background-color:#ffffff;color:#033d3d;}
+header{
+  background-color:#02b5a1;color:white;padding:15px 50px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:10;
+}
+header h1{font-size:28px;letter-spacing:1px;}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+nav a{
+  color:white;text-decoration:none;
+  font-weight:bold;cursor:pointer;transition:0.3s;
+}
+nav a:hover{color:#013b3b;text-decoration:underline;}
+.cart-icon{
+  cursor:pointer;font-size:18px;background:white;color:#02b5a1;
+  padding:6px 12px;border-radius:8px;font-weight:bold;
+  margin-left: 15px;
+}
+.hero{
+  background:url('https://porsche-vietnam.vn/wp-content/uploads/2025/02/992-2nd-c2-gts-banner.jpg') center/cover no-repeat;
+  height:65vh;display:flex;align-items:center;justify-content:center;
+  color:white;text-shadow:2px 2px 6px #000;
+}
+.hero h2{font-size:42px;background-color:rgba(0,0,0,0.4);padding:15px 30px;border-radius:12px;}
+section{padding:50px 80px;}
+section h2{text-align:center;margin-bottom:25px;font-size:32px;color:#016c63;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.card{
+  border:1px solid #cce7e7;border-radius:15px;overflow:hidden;
+  background:white;box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  transition:transform 0.3s;
+}
+.card:hover{transform:translateY(-5px);}
+.card img{width:100%;height:200px;object-fit:cover;}
+.card-content{padding:15px;text-align:center;}
+.card h3{margin:10px 0;color:#013b3b;}
+.card p{color:#016c63;font-weight:bold;}
+.card button{
+  margin-top:10px;background-color:#02b5a1;color:white;
+  border:none;padding:8px 16px;border-radius:8px;cursor:pointer;
+  transition:0.3s;
+}
+.card button:hover{background-color:#016c63;}
+.contact{
+  background-color:#f7fefe;text-align:center;
+  padding:40px;border-top:3px solid #02b5a1;
+}
+.contact p{margin:8px 0;}
+.contact a{color:#02b5a1;text-decoration:none;font-weight:bold;}
+.contact a:hover{text-decoration:underline;}
+footer{background-color:#02b5a1;color:white;text-align:center;padding:15px;margin-top:20px;}
+.modal{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background-color:rgba(0,0,0,0.6);justify-content:center;align-items:center;
+  z-index:100;
+}
+.modal-content{
+  background:white;padding:30px;border-radius:15px;
+  max-width:380px;width:90%;text-align:center;position:relative;
+}
+.modal-content input{
+  width:90%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:8px;
+}
+.modal-content button{
+  background:#02b5a1;color:white;border:none;padding:10px 20px;
+  border-radius:8px;margin-top:10px;cursor:pointer;
+}
+.modal-content a{display:block;margin-top:10px;color:#02b5a1;cursor:pointer;}
+.modal-content a:hover{text-decoration:underline;}
+.close{
+  position:absolute;top:10px;right:20px;font-size:22px;cursor:pointer;color:#02b5a1;
+}
+#account{
+  margin-left: 10px;
+  font-weight: bold;
+  cursor: default;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Porsche Minh Nhật</h1>
+  <nav>
+    <a href="#home">Trang chủ</a>
+    <a href="#cars">Dòng xe nổi bật</a>
+    <a href="#contact">Liên hệ</a>
+    <a id="loginBtn">Đăng nhập</a>
+    <a id="account" style="display:none;"></a>
+    <a id="logoutBtn" style="display:none;">Đăng xuất</a>
+    <div class="cart-icon" id="cartBtn">🛒 Giỏ hàng</div>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <h2>Trải nghiệm đỉnh cao cùng Porsche Minh Nhật</h2>
+</div>
+
+<section id="cars">
+  <h2>Dòng xe nổi bật</h2>
+  <div class="products">
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2013/11/jdp-2016-modelseries-718-boxster-intro-01.jpg" alt="Porsche 718" />
+      <div class="card-content">
+        <h3>Porsche 718</h3>
+        <p>3.950.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche 718',3950000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2021/11/MA22T3BOX0005_rgb-1.jpg" alt="Porsche Macan T" />
+      <div class="card-content">
+        <h3>Porsche Macan T</h3>
+        <p>3.570.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche Macan T',3570000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2024/05/PA24P5AOX0001_low-banner.jpg" alt="Porsche Panamera" />
+      <div class="card-content">
+        <h3>Porsche Panamera</h3>
+        <p>6.420.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche Panamera',6420000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2025/02/992-2nd-c2-gts-banner.jpg" alt="Porsche 911 Turbo S" />
+      <div class="card-content">
+        <h3>Porsche 911 Turbo S</h3>
+        <p>8.500.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche 911 Turbo S',8500000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2023/09/E3-2nd-TOP-GT-model-page-headbanner.jpg" alt="Porsche Taycan" />
+      <div class="card-content">
+        <h3>Porsche Taycan</h3>
+        <p>6.800.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche Taycan',6800000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://porsche-vietnam.vn/wp-content/uploads/2023/09/E3-2nd-C-model-page-headbanner.jpg" alt="Porsche Cayenne" />
+      <div class="card-content">
+        <h3>Porsche Cayenne</h3>
+        <p>5.900.000.000 VNĐ</p>
+        <button onclick="addToCart('Porsche Cayenne',5900000000)">Thêm vào giỏ</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Liên hệ Porsche Minh Nhật</h2>
+  <p><strong>Địa chỉ:</strong> 222 Lê Lợi, Quận 1, TP.HCM</p>
+  <p><strong>Điện thoại:</strong> 0365403321</p>
+  <p><strong>Email:</strong> <a href="mailto:minhnhattoro@gmail.com">minhnhattoro@gmail.com</a></p>
+</section>
+
+<footer>© 2025 Porsche Minh Nhật. All rights reserved.</footer>
+
+<!-- LOGIN -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <h3>Đăng nhập</h3>
+    <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+    <input type="password" id="loginPass" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <a onclick="openSignup()">Chưa có tài khoản? Đăng ký</a>
+    <a onclick="openForgot()">Quên mật khẩu?</a>
+  </div>
+</div>
+
+<!-- SIGNUP -->
+<div class="modal" id="signupModal">
+  <div class="modal-content">
+    <h3>Đăng ký</h3>
+    <input type="text" id="signupUser" placeholder="Tên đăng nhập">
+    <input type="email" id="signupEmail" placeholder="Email của bạn">
+    <input type="password" id="signupPass" placeholder="Mật khẩu">
+    <button onclick="signup()">Tạo tài khoản</button>
+    <a onclick="openLogin()">Đã có tài khoản? Đăng nhập</a>
+  </div>
+</div>
+
+<!-- FORGOT -->
+<div class="modal" id="forgotModal">
+  <div class="modal-content">
+    <h3>Quên mật khẩu</h3>
+    <input type="text" id="forgotUserEmail" placeholder="Nhập tên đăng nhập hoặc email">
+    <button onclick="resetPass()">Lấy lại mật khẩu</button>
+    <a onclick="openLogin()">Quay lại đăng nhập</a>
+  </div>
+</div>
+
+<script>
+const loginModal = document.getElementById('loginModal');
+const signupModal = document.getElementById('signupModal');
+const forgotModal = document.getElementById('forgotModal');
+const loginBtn = document.getElementById('loginBtn');
+const account = document.getElementById('account');
+const logoutBtn = document.getElementById('logoutBtn');
+
+loginBtn.onclick = () => { loginModal.style.display = 'flex'; };
+logoutBtn.onclick = () => {
+  localStorage.removeItem('currentUser');
+  logoutBtn.style.display = 'none';
+  account.style.display = 'none';
+  loginBtn.style.display = 'inline';
+};
+
+window.onclick = e => {
+  if (e.target == loginModal) loginModal.style.display = 'none';
+  if (e.target == signupModal) signupModal.style.display = 'none';
+  if (e.target == forgotModal) forgotModal.style.display = 'none';
+};
+function openLogin() {
+  signupModal.style.display = 'none';
+  forgotModal.style.display = 'none';
+  loginModal.style.display = 'flex';
+}
+function openSignup() {
+  loginModal.style.display = 'none';
+  signupModal.style.display = 'flex';
+}
+function openForgot() {
+  loginModal.style.display = 'none';
+  forgotModal.style.display = 'flex';
+}
+
+function signup() {
+  const u = document.getElementById('signupUser').value.trim();
+  const p = document.getElementById('signupPass').value.trim();
+  const e = document.getElementById('signupEmail').value.trim();
+  if (!u || !p || !e) {
+    alert("Vui lòng nhập đầy đủ tên đăng nhập, mật khẩu và email!");
+    return;
+  }
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  if (users[u]) {
+    alert("Tên đăng nhập đã tồn tại!");
+    return;
+  }
+  users[u] = { password: p, email: e };
+  localStorage.setItem('users', JSON.stringify(users));
+  alert("Đăng ký thành công!");
+  signupModal.style.display = 'none';
+}
+
+function login() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  if (users[u] && users[u].password === p) {
+    alert("Đăng nhập thành công!");
+    loginModal.style.display = 'none';
+    loginBtn.style.display = 'none';
+    account.style.display = 'inline';
+    logoutBtn.style.display = 'inline';
+    account.textContent = u;
+    localStorage.setItem('currentUser', u);
+  } else {
+    alert("Sai tài khoản hoặc mật khẩu!");
+  }
+}
+
+function resetPass() {
+  const input = document.getElementById('forgotUserEmail').value.trim();
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  // Tìm theo username trước
+  if (users[input]) {
+    alert(`Mật khẩu của bạn là: ${users[input].password}`);
+    return;
+  }
+  // Tìm theo email
+  let found = false;
+  for (const user in users) {
+    if (users[user].email === input) {
+      alert(`Mật khẩu của bạn là: ${users[user].password}`);
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    alert("Không tìm thấy tài khoản hoặc email!");
+  }
+}
+
+function getAllUsers() {
+  return JSON.parse(localStorage.getItem('users')) || {};
+}
+
+let cart = [];
+function addToCart(name, price) {
+  cart.push({ name, price });
+  alert(name + " đã được thêm vào giỏ hàng!");
+}
+document.getElementById('cartBtn').onclick = function () {
+  if (cart.length === 0) { alert("Giỏ hàng trống!"); return; }
+  let msg = "🛒 Giỏ hàng:\n";
+  let total = 0;
+  cart.forEach(c => {
+    msg += `- ${c.name}: ${c.price.toLocaleString()} VNĐ\n`;
+    total += c.price;
+  });
+  msg += `\nTổng cộng: ${total.toLocaleString()} VNĐ`;
+  alert(msg);
+};
+
+// Khi trang load, kiểm tra xem đã đăng nhập chưa
+window.onload = () => {
+  const currentUser = localStorage.get
